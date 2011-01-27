@@ -1,0 +1,12 @@
+DESCRIPTION="Database-Independent Abstraction Layer for C"
+HOMEPAGE="http://libdbi.sourceforge.net/"
+SRC_URI="mirror://sourceforge/libdbi/${P}.tar.gz"
+PATCH_URI="0.8.4-doc-build.patch"
+
+PKG_NAMES="libdbi1 libdbi-devel"
+libdbi1_CONTENTS="--exclude=*-guide* usr/bin/*-1.dll usr/share/doc/"
+libdbi_devel_CONTENTS="usr/include/ usr/lib/ usr/share/doc/${PN}/*-guide*"
+
+DIFF_EXCLUDES="*.tex"
+
+DEPEND+="openjade"

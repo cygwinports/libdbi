@@ -1,0 +1,46 @@
+--- origsrc/libdbi-0.8.4/doc/Makefile.am	2008-01-14 18:18:22.000000000 -0600
++++ src/libdbi-0.8.4/doc/Makefile.am	2011-01-26 03:29:34.590614000 -0600
+@@ -2,7 +2,6 @@
+ 
+ AUTOMAKE_OPTIONS = foreign
+ 
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
+ progguidedir = $(docdir)/programmers-guide
+ driverguidedir = $(docdir)/driver-guide
+ 
+@@ -27,7 +26,7 @@ programmers-guide.pdf: $(programmers_sou
+ #	@echo "Converting programmers-guide.ps to PDF...";
+ #	ps2pdf programmers-guide.ps
+ 	@echo "Converting programmers-guide.sgml to PDF...";
+-	openjade -t tex -V tex-backend -d $(top_srcdir)/doc/include/doc-print.dsl programmers-guide.sgml
++	openjade -t tex -V tex-backend -d $(top_srcdir)/doc/include/doc-print.dsl $(top_srcdir)/doc/programmers-guide.sgml
+ # run jadetex three times to get the references right
+ 	pdftex "&pdfjadetex" programmers-guide.tex
+ 	pdftex "&pdfjadetex" programmers-guide.tex
+@@ -36,7 +35,7 @@ programmers-guide.pdf: $(programmers_sou
+ programmers-guide/*: $(programmers_sources)
+ 	@echo "Converting programmers-guide.sgml to HTML...";
+ #	sgmltools -b html -s include/doc-html.dsl programmers-guide.sgml
+-	mkdir -p programmers-guide && cd programmers-guide && openjade -t sgml -d $(top_srcdir)/../doc/include/doc-html.dsl $(top_srcdir)/../doc/programmers-guide.sgml
++	mkdir -p programmers-guide && cd programmers-guide && openjade -t sgml -d $(top_srcdir)/doc/include/doc-html.dsl $(top_srcdir)/doc/programmers-guide.sgml
+ 
+ driver-guide.pdf: $(driver_sources)
+ #	@echo "Converting driver-guide.sgml to PostScript...";
+@@ -44,7 +43,7 @@ driver-guide.pdf: $(driver_sources)
+ #	@echo "Converting driver-guide.ps to PDF...";
+ #	ps2pdf driver-guide.ps
+ 	@echo "Converting driver-guide.sgml to PDF...";
+-	openjade -t tex -d include/doc-print.dsl driver-guide.sgml
++	openjade -t tex -d $(top_srcdir)/doc/include/doc-print.dsl $(top_srcdir)/doc/driver-guide.sgml
+ # run jadetex three times to get the references right
+ 	pdftex "&pdfjadetex" driver-guide.tex
+ 	pdftex "&pdfjadetex" driver-guide.tex
+@@ -53,7 +52,7 @@ driver-guide.pdf: $(driver_sources)
+ driver-guide/*: $(driver_sources)
+ 	@echo "Converting driver-guide.sgml to HTML...";
+ #	sgmltools -b html -s include/doc-html.dsl driver-guide.sgml
+-	mkdir -p driver-guide && cd driver-guide && openjade -t sgml -d $(top_srcdir)/../doc/include/doc-html.dsl $(top_srcdir)/../doc/driver-guide.sgml
++	mkdir -p driver-guide && cd driver-guide && openjade -t sgml -d $(top_srcdir)/doc/include/doc-html.dsl $(top_srcdir)/doc/driver-guide.sgml
+ 
+ distclean: clean
+ 	rm -f programmers-guide.pdf
