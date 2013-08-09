@@ -1,0 +1,23 @@
+NAME="libdbi"
+VERSION=0.9.0
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="Database Independent Abstraction library"
+DESCRIPTION="ibdbi implements a database-independent abstraction layer in C,
+similar to the DBI/DBD layer in Perl. Writing one generic set of code,
+programmers can leverage the power of multiple databases and multiple
+simultaneous database connections by using this framework."
+HOMEPAGE="http://libdbi.sourceforge.net/"
+SRC_URI="mirror://sourceforge/libdbi/libdbi-${VERSION}.tar.gz"
+PATCH_URI="0.9.0-doc-build.patch"
+
+PKG_NAMES="libdbi1 libdbi-devel libdbi-doc"
+libdbi1_REQUIRES="libdbi-drivers"
+libdbi1_CONTENTS="--exclude=*-guide* usr/bin/*-1.dll usr/share/doc/"
+libdbi_devel_CONTENTS="usr/include/ usr/lib/"
+libdbi_doc_CATEGORY="Doc"
+libdbi_doc_CONTENTS="usr/share/doc/libdbi/*-guide*"
+
+DIFF_EXCLUDES="*.tex"
+
+DEPEND+="openjade"
